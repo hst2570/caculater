@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: Pretendard;
+    src: url('../font/Pretendard-Regular.ttf');
+}
+
+@layer base {
+    html {
+        font-family: 'Pretendard';
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .main.pc {
+        max-width: 420px;
+        min-height: 800px;
+        margin: 20px auto;
+        position: relative;
+        @apply rounded-[12px] overflow-hidden;
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "singleQuote": true,
+    "semi": true,
+    "printWidth": 180,
+    "tabWidth": 4,
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "vueIndentScriptAndStyle": true,
+    "extends": [
+        "plugin:vue/vue3-recommended",
+        "eslint:recommended",
+        "@vue/typescript/recommended",
+        "@vue/eslint-config-prettier"
+    ]
+}
