@@ -34,6 +34,7 @@
     import { isMobile } from '../../store/useragent';
 
     const route = useRoute();
+    const router = useRouter();
     const dDay = ref(route.query?.date);
     const caculatedDate = ref();
 
@@ -55,6 +56,12 @@
         if (targetDate - today === 0) {
             caculatedDate.value = 0;
         }
+
+        router.replace({
+            query: {
+                date: dDay.value
+            }
+        });
     };
 
     const share = () => {

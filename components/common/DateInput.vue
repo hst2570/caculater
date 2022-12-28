@@ -54,15 +54,17 @@
         if (value.length === maxLength) {
             if (!month.value) {
                 monthText.value.focus();
-                return;
             } else if (!day.value) {
                 dayText.value.focus();
-                return;
             }
 
             if (year.value && month.value && day.value) {
                 emit('setValue', `${year.value}-${month.value}-${day.value}`);
+            } else {
+                emit('setValue', '');
             }
+        } else {
+            emit('setValue', '');
         }
     };
 </script>
