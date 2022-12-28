@@ -1,28 +1,30 @@
 <template>
-    <div class="main" :class="{ pc: isPc, mobile: !isPc, hidden: isHidden }">
+    <div :class="{ pc: isPc, mobile: !isPc, hidden: isHidden }">
         <CommonHeader :title="'D-Day 계산기'" />
-
-        <div class="content">
-            <div class="dateContainer">
-                <div class="date">
-                    <label for="d-day">D-Day</label>
-                    <CommonDateInput name="d-day" :value="dDay" :placeholder="'ex) 2022-01-01'" @set-value="setDateValue" />
+        <div class="main">
+            <div class="content">
+                <div class="dateContainer">
+                    <div class="date">
+                        <label for="d-day">D-Day</label>
+                        <CommonDateInput name="d-day" :value="dDay" :placeholder="'ex) 2022-01-01'" @set-value="setDateValue" />
+                    </div>
                 </div>
-            </div>
-            <div class="result">
-                <div v-if="regex.test(dDay)">
-                    <span v-if="caculatedDate === 0"> 오늘은 <span class="caculatedDate">D-Day</span> 입니다. </span>
-                    <span v-else-if="caculatedDate > 0">
-                        오늘부터 <span class="d-day">{{ dDay }}</span> 까지, <br />
-                        <span class="caculatedDate">{{ Math.abs(caculatedDate) }}일</span> 남았습니다.
-                    </span>
-                    <span v-else>
-                        <span class="d-day">{{ dDay }}</span> 부터 오늘까지, <br />
-                        <span class="caculatedDate">{{ Math.abs(caculatedDate) }}일</span> 지났습니다.
-                    </span>
-                </div>
-                <div v-else>
-                    <span class="placeholder">D-Day 날짜를 입력해주세요.</span>
+                <div class="result">
+                    <div v-if="regex.test(dDay)">
+                        <span v-if="caculatedDate === 0"> 오늘은 <span class="caculatedDate">D-Day</span> 입니다. </span>
+                        <span v-else-if="caculatedDate > 0">
+                            오늘부터 <span class="d-day">{{ dDay }}</span> 까지, <br />
+                            <span class="caculatedDate">{{ Math.abs(caculatedDate) }}일</span> 남았습니다.
+                        </span>
+                        <span v-else>
+                            <span class="d-day">{{ dDay }}</span> 부터 오늘까지, <br />
+                            <span class="caculatedDate">{{ Math.abs(caculatedDate) }}일</span> 지났습니다.
+                        </span>
+                        <CommonShare :title="'D-Day 계산기'" :text="'D-Day 계산해보세요'" class="shareBtn" />
+                    </div>
+                    <div v-else>
+                        <span class="placeholder">D-Day 날짜를 입력해주세요.</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -52,6 +54,21 @@
 
         if (targetDate - today === 0) {
             caculatedDate.value = 0;
+        }
+    };
+
+    const share = () => {
+        const url = window.location.href;
+        if (navigator.share) {
+            navigator.share({
+                title: 'D-Day 계산기',
+                text: 'D-Day 계산해보세요',
+                url: document.location.href
+            });
+        } else if (navigator.clipboard) {
+            navigator.clipboard.writeText(url).then(() => {
+                alert('URL이 복사되었습니다.');
+            });
         }
     };
 
@@ -102,7 +119,6 @@
 
     .dateContainer {
         width: 100%;
-        padding: 150px 35px 0;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -166,6 +182,7 @@
         font-weight: 500;
         font-size: 20px;
         color: #21272a;
+        position: relative;
     }
 
     .caculatedDate {

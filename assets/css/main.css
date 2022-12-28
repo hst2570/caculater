@@ -20,11 +20,39 @@
         display: none;
     }
 
-    .main.pc {
+    .pc .main {
         max-width: 420px;
         min-height: 800px;
-        margin: 20px auto;
+        margin: 100px auto 0;
         position: relative;
         @apply rounded-[12px] overflow-hidden;
+    }
+
+    .mobile .header {
+        @apply border-none;
+    }
+
+    .mobile .header h1 {
+        @apply text-white;
+    }
+
+    .pc .header {
+        @apply border;
+    }
+
+    .pc .header h1 {
+        @apply text-black;
+    }
+
+    .pc .dateContainer {
+        @apply pt-[70px];
+    }
+
+    .dateContainer {
+        @apply pt-[150px] px-[35px];
+    }
+
+    .shareBtn {
+        @apply absolute right-[10px] top-[10px];
     }
 }

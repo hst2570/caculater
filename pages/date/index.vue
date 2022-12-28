@@ -1,34 +1,36 @@
 <template>
-    <div class="main" :class="{ pc: isPc, mobile: !isPc, hidden: isHidden }">
+    <div :class="{ pc: isPc, mobile: !isPc, hidden: isHidden }">
         <CommonHeader :title="'날짜 계산기'" />
-
-        <div class="content">
-            <div class="dateContainer">
-                <div class="date defaultDate">
-                    <label for="start">시작일</label>
-                    <CommonDateInput name="start" :value="startDate" :placeholder="'ex) 2022-01-01'" @set-value="setStartDateValue" />
+        <div class="main">
+            <div class="content">
+                <div class="dateContainer">
+                    <div class="date defaultDate">
+                        <label for="start">시작일</label>
+                        <CommonDateInput name="start" :value="startDate" :placeholder="'ex) 2022-01-01'" @set-value="setStartDateValue" />
+                    </div>
+                    <div class="date">
+                        <label for="end">종료일</label>
+                        <CommonDateInput name="end" :value="endDate" :placeholder="'ex) 2022-12-31'" @set-value="setEndDateValue" />
+                    </div>
                 </div>
-                <div class="date">
-                    <label for="end">종료일</label>
-                    <CommonDateInput name="end" :value="endDate" :placeholder="'ex) 2022-12-31'" @set-value="setEndDateValue" />
-                </div>
-            </div>
-            <div class="result">
-                <div v-if="regex.test(startDate) && regex.test(endDate)">
-                    <span v-if="caculatedDate === 0"><span class="caculatedDate">시작일과 종료일이 </span> 같습니다. </span>
-                    <span v-else-if="caculatedDate > 0">
-                        <span class="d-day">{{ startDate }}</span> 부터 <br />
-                        <span class="d-day">{{ endDate }}</span> 까지, <br />
-                        <span class="caculatedDate">{{ Math.abs(caculatedDate) }}일</span> 남았습니다.
-                    </span>
-                    <span v-else>
-                        <span class="d-day">{{ endDate }}</span> 부터 <br />
-                        <span class="d-day">{{ startDate }}</span> 까지, <br />
-                        <span class="caculatedDate">{{ Math.abs(caculatedDate) }}일</span> 지났습니다.
-                    </span>
-                </div>
-                <div v-else>
-                    <span class="placeholder">시작일과 종료일을 입력해주세요.</span>
+                <div class="result">
+                    <div v-if="regex.test(startDate) && regex.test(endDate)">
+                        <span v-if="caculatedDate === 0"><span class="caculatedDate">시작일과 종료일이 </span> 같습니다. </span>
+                        <span v-else-if="caculatedDate > 0">
+                            <span class="d-day">{{ startDate }}</span> 부터 <br />
+                            <span class="d-day">{{ endDate }}</span> 까지, <br />
+                            <span class="caculatedDate">{{ Math.abs(caculatedDate) }}일</span> 남았습니다.
+                        </span>
+                        <span v-else>
+                            <span class="d-day">{{ endDate }}</span> 부터 <br />
+                            <span class="d-day">{{ startDate }}</span> 까지, <br />
+                            <span class="caculatedDate">{{ Math.abs(caculatedDate) }}일</span> 지났습니다.
+                        </span>
+                        <CommonShare :title="'날짜 계산기'" :text="'날짜를 계산해보세요'" class="shareBtn" />
+                    </div>
+                    <div v-else>
+                        <span class="placeholder">시작일과 종료일을 입력해주세요.</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -125,7 +127,6 @@
 
     .dateContainer {
         width: 100%;
-        padding: 150px 35px 0;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -189,6 +190,7 @@
         font-weight: 500;
         font-size: 20px;
         color: #21272a;
+        position: relative;
     }
 
     .caculatedDate {
