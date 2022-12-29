@@ -33,7 +33,6 @@
     const day = ref(inputedDate?.[2]);
     const monthText = ref();
     const dayText = ref();
-    const formated = ref(props.value);
 
     const formatedDate = (date) => {
         if (date.length > 4) {
@@ -71,13 +70,13 @@
 <style scoped>
     .textField {
         @apply flex flex-row items-center gap-[8px] relative;
-        @apply font-pre font-normal not-italic text-[18px] leading-[6px] tracking-[-0.5px] text-black;
+        @apply font-pre font-normal not-italic text-[16px] leading-[6px] tracking-[-0.5px] text-black;
         @apply bg-white rounded-[6px] box-border border-grey-200 border p-[14px] h-[48px];
     }
 
     .textField input[type='text'] {
         caret-color: black;
-        @apply font-pre font-normal not-italic text-[18px] leading-[6px] tracking-[-0.5px] text-black w-[100%];
+        @apply font-pre font-normal not-italic text-[16px] leading-[6px] tracking-[-0.5px] text-black w-[100%];
     }
 
     .textField input[type='text']::placeholder {
@@ -89,7 +88,7 @@
     }
 
     .textField:focus-within {
-        @apply border-grey-800;
+        @apply border-black;
     }
 
     .textField span {

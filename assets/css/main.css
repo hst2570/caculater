@@ -23,7 +23,7 @@
     .pc .main {
         max-width: 420px;
         min-height: 800px;
-        margin: 100px auto 0;
+        margin: 80px auto 0;
         position: relative;
         @apply rounded-[12px] overflow-hidden;
     }
@@ -53,6 +53,10 @@
     }
 
     .shareBtn {
-        @apply absolute right-[10px] top-[10px];
+        @apply absolute right-[20px] top-[20px];
+    }
+
+    .calendarIcon {
+        @apply w-[18px] h-[18px] inline-block text-white;
     }
 }
