@@ -21,10 +21,5 @@ export default defineNuxtConfig({
             }
         ]
     ],
-    ssr: false,
-    nitro: {
-        prerender: {
-            routes: ['/d-day', '/date']
-        }
-    }
+    nitro: {}
 });

@@ -8,7 +8,7 @@
         "dev": "nuxt dev",
         "start": "nuxt build && nuxt start",
         "lint": "eslint --ext .ts,.js,.vue .",
-        "deploy": "nuxt build && firebase deploy",
+        "deploy": "nuxt generate && firebase deploy",
         "generate": "nuxt generate",
         "preview": "nuxt preview"
     },

@@ -1,5 +1,11 @@
 <template>
     <div :class="{ pc: isPc, mobile: !isPc, hidden: isHidden }">
+        <Head>
+            <title>D-Day 계산기</title>
+            <meta name="description" content="D-Day 계산기" />
+            <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Head>
         <CommonHeader :title="'D-Day 계산기'" />
         <div class="main">
             <div class="content">
@@ -106,22 +112,6 @@
     onMounted(() => {
         isPc.value = !isMobile();
         isHidden.value = false;
-    });
-
-    useHead({
-        title: 'D-Day 계산기',
-        meta: [
-            {
-                name: 'viewport',
-                content: 'width=device-width, initial-scale=1'
-            },
-            {
-                hid: 'description',
-                name: 'description',
-                content: 'D-Day 계산기'
-            }
-        ],
-        link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
     });
 </script>
 <style scoped>
