@@ -25,7 +25,7 @@
         min-height: 800px;
         margin: 80px auto 0;
         position: relative;
-        @apply rounded-[12px] overflow-hidden;
+        @apply rounded-[26px] overflow-hidden;
     }
 
     .mobile .header {
