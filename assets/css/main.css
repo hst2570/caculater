@@ -28,6 +28,10 @@
         @apply rounded-[26px] overflow-hidden;
     }
 
+    .content {
+        @apply bg-custom-blue absolute w-full top-0 h-[100vh];
+    }
+
     .mobile .header {
         @apply border-none;
     }

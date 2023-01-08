@@ -16,6 +16,7 @@ module.exports = {
                     800: '#21272a',
                     900: '#121619'
                 },
+                'custom-blue': '#2E517D',
                 'custom-green': '#00BF6F'
             },
             fontFamily: {

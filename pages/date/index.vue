@@ -132,14 +132,6 @@ useHead({
 });
 </script>
 <style scoped>
-.content {
-    background: #343a3f;
-    height: 100vh;
-    position: absolute;
-    width: 100%;
-    top: 0;
-}
-
 .dateContainer {
     width: 100%;
     display: flex;
@@ -204,13 +196,13 @@ useHead({
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
-    color: #21272a;
     position: relative;
+    @apply text-grey-700;
 }
 
 .caculatedDate {
     font-weight: 900;
-    @apply text-custom-green;
+    @apply text-custom-blue text-[20px];
 }
 
 .d-day {

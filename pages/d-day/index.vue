@@ -140,14 +140,6 @@ useHead({
 });
 </script>
 <style scoped>
-.content {
-    background: #343a3f;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    height: 100vh;
-}
-
 .dateContainer {
     width: 100%;
     display: flex;
@@ -201,7 +193,7 @@ useHead({
 .result {
     box-sizing: border-box;
     margin: 80px 35px;
-    height: 360px;
+    height: 320px;
     align-items: center;
     padding: 25px;
     gap: 12px;
@@ -212,13 +204,13 @@ useHead({
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
-    color: #21272a;
     position: relative;
+    @apply text-grey-700;
 }
 
 .caculatedDate {
     font-weight: 900;
-    @apply text-custom-green;
+    @apply text-custom-blue text-[20px];
 }
 
 .d-day {
