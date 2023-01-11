@@ -53,7 +53,7 @@
     }
 
     .dateContainer {
-        @apply pt-[150px] px-[35px];
+        @apply pt-[120px] px-[35px];
     }
 
     .shareBtn {
