@@ -34,9 +34,10 @@
                         <span class="placeholder">D-Day 날짜를 입력해주세요.</span>
                     </div>
                     <CommonShare :title="'D-Day 계산기'" :text="'D-Day 계산해보세요'" class="shareBtn" />
-                    <CommonAdBanner />
+                    <CommonAdBanner v-if="!isPc" />
                 </div>
             </div>
+            <CommonAdBanner v-if="isPc" />
         </div>
     </div>
 </template>
@@ -44,8 +45,9 @@
     import { isMobile } from '../../store/useragent';
 
     const regex = /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/;
-    const date = new Date();
-    const today = new Date(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`);
+    const todayDate = new Date();
+    const month = todayDate.getMonth() + 1 < 10 ? `0${todayDate.getMonth() + 1}` : todayDate.getMonth() + 1;
+    const today = new Date(`${todayDate.getFullYear()}-${month}-${todayDate.getDate()}`);
 
     const route = useRoute();
     const router = useRouter();

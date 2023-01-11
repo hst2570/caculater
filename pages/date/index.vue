@@ -46,9 +46,10 @@
                         <span class="placeholder">시작일과 종료일을 입력해주세요.</span>
                     </div>
                     <CommonShare :title="'날짜 계산기'" :text="'날짜를 계산해보세요'" class="shareBtn" />
-                    <CommonAdBanner />
+                    <CommonAdBanner v-if="!isPc" />
                 </div>
             </div>
+            <CommonAdBanner v-if="isPc" />
         </div>
     </div>
 </template>
