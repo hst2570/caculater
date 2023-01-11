@@ -39,105 +39,105 @@
     </div>
 </template>
 <script setup>
-import { isMobile } from '../../store/useragent';
+    import { isMobile } from '../../store/useragent';
 
-const regex = /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/;
-const date = new Date();
-const today = new Date(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`);
+    const regex = /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/;
+    const date = new Date();
+    const today = new Date(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`);
 
-const route = useRoute();
-const router = useRouter();
-const dDay = ref(route.query?.date);
-const caculatedDate = ref();
-const isPc = ref();
-const isHidden = ref(true);
-const description = ref('D-day 계산을 해보세요.');
-const absDate = ref();
+    const route = useRoute();
+    const router = useRouter();
+    const dDay = ref(route.query?.date);
+    const caculatedDate = ref();
+    const isPc = ref();
+    const isHidden = ref(true);
+    const description = ref('D-day 계산을 해보세요.');
+    const absDate = ref();
 
-const setDateValue = (date) => {
-    dDay.value = date;
-};
+    const setDateValue = (date) => {
+        dDay.value = date;
+    };
 
-const caculateDate = (date) => {
-    const targetDate = new Date(date);
-    setDateValue(date);
-    caculatedDate.value = (targetDate - today) / 60 / 60 / 24 / 1000;
-    caculatedDate.value = Math.floor(caculatedDate.value);
-    absDate.value = Math.abs(caculatedDate.value);
+    const caculateDate = (date) => {
+        const targetDate = new Date(date);
+        setDateValue(date);
+        caculatedDate.value = (targetDate - today) / 60 / 60 / 24 / 1000;
+        caculatedDate.value = Math.floor(caculatedDate.value);
+        absDate.value = Math.abs(caculatedDate.value);
 
-    if (targetDate - today === 0) {
-        caculatedDate.value = 0;
+        if (targetDate - today === 0) {
+            caculatedDate.value = 0;
+        }
+
+        router.replace({
+            query: {
+                date: dDay.value
+            }
+        });
+    };
+
+    const share = () => {
+        const url = window.location.href;
+        if (navigator.share) {
+            navigator.share({
+                title: 'D-Day 계산기',
+                text: 'D-Day 계산해보세요',
+                url: document.location.href
+            });
+        } else if (navigator.clipboard) {
+            navigator.clipboard.writeText(url).then(() => {
+                alert('URL이 복사되었습니다.');
+            });
+        }
+    };
+
+    if (dDay.value) {
+        caculateDate(dDay.value);
     }
 
-    router.replace({
-        query: {
-            date: dDay.value
+    if (route.query?.date) {
+        const date = route.query?.date;
+
+        if (caculatedDate.value > 0) {
+            description.value = `${date}부터 ${absDate.value}일 남았습니다.`;
+        } else if (caculatedDate.value < 0) {
+            description.value = `${date}부터 ${absDate.value}일 지났습니다.`;
+        } else if (caculatedDate.value === 0) {
+            description.value = `D-Day입니다.`;
         }
+    }
+
+    watch(
+        () => dDay.value,
+        (newDate) => {
+            if (regex.test(newDate)) {
+                caculateDate(newDate);
+            } else {
+                caculatedDate.value = '';
+            }
+        }
+    );
+
+    onMounted(() => {
+        isPc.value = !isMobile();
+        isHidden.value = false;
     });
-};
 
-const share = () => {
-    const url = window.location.href;
-    if (navigator.share) {
-        navigator.share({
-            title: 'D-Day 계산기',
-            text: 'D-Day 계산해보세요',
-            url: document.location.href
-        });
-    } else if (navigator.clipboard) {
-        navigator.clipboard.writeText(url).then(() => {
-            alert('URL이 복사되었습니다.');
-        });
-    }
-};
-
-if (dDay.value) {
-    caculateDate(dDay.value);
-}
-
-if (route.query?.date) {
-    const date = route.query?.date;
-
-    if (caculatedDate.value > 0) {
-        description.value = `${date}부터 ${absDate.value}일 남았습니다.`;
-    } else if (caculatedDate.value < 0) {
-        description.value = `${date}부터 ${absDate.value}일 지났습니다.`;
-    } else if (caculatedDate.value === 0) {
-        description.value = `D-Day입니다.`;
-    }
-}
-
-watch(
-    () => dDay.value,
-    (newDate) => {
-        if (regex.test(newDate)) {
-            caculateDate(newDate);
-        } else {
-            caculatedDate.value = '';
-        }
-    }
-);
-
-onMounted(() => {
-    isPc.value = !isMobile();
-    isHidden.value = false;
-});
-
-useHead({
-    title: 'D-day 계산기',
-    meta: [
-        {
-            name: 'viewport',
-            content: 'width=device-width, initial-scale=1'
-        },
-        {
-            hid: 'description',
-            name: 'description',
-            content: description
-        }
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
-});
+    useHead({
+        title: 'D-day 계산기',
+        meta: [
+            {
+                name: 'viewport',
+                content: 'width=device-width, initial-scale=1'
+            },
+            {
+                hid: 'description',
+                name: 'description',
+                content: description
+            }
+        ],
+        link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    });
 </script>
 <style scoped>
 .dateContainer {
