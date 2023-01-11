@@ -48,8 +48,8 @@
                     <CommonShare :title="'날짜 계산기'" :text="'날짜를 계산해보세요'" class="shareBtn" />
                     <CommonAdBanner v-if="!isPc" />
                 </div>
+                <CommonAdBanner v-if="isPc" />
             </div>
-            <CommonAdBanner v-if="isPc" />
         </div>
     </div>
 </template>
