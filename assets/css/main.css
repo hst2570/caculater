@@ -57,7 +57,7 @@
     }
 
     .shareBtn {
-        @apply absolute right-[20px] top-[20px];
+        @apply absolute right-[0px] top-[-40px] bg-white;
     }
 
     .calendarIcon {
