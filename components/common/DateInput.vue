@@ -5,6 +5,7 @@
         <input @input="checkMaxLength" ref="monthText" :inputmode="inputmode" v-model="month" :type="type" maxlength="2" placeholder="01" />
         <div>-</div>
         <input @input="checkMaxLength" ref="dayText" :inputmode="inputmode" v-model="day" :type="type" maxlength="2" placeholder="01" />
+        <div v-if="isOnError" class="errorMsg">날짜 형식이 잘못되었습니다.</div>
     </div>
 </template>
 <script setup>
@@ -61,11 +62,16 @@
     const checkMaxLength = (e) => {
         const value = e.target.value;
         const maxLength = e.target.maxLength;
+        isOnError.value = false;
 
         if (value.length === maxLength) {
             if (!month.value) {
                 monthText.value.focus();
             } else if (!day.value) {
+                if (month.value > 12) {
+                    isOnError.value = true;
+                    return;
+                }
                 dayText.value.focus();
             }
 
@@ -117,5 +123,9 @@
 
     .textField span {
         @apply absolute w-[100%];
+    }
+
+    .errorMsg {
+        @apply absolute bottom-[-17px] right-0 w-[auto] text-red-200 text-[12px];
     }
 </style>
