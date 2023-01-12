@@ -14,42 +14,44 @@
 
     body {
         margin: 0;
+        @apply bg-custom-blue;
     }
 
     .hidden {
         display: none;
     }
 
-    .pc .main {
-        max-width: 420px;
-        min-height: 800px;
-        margin: 80px auto 0;
-        position: relative;
-        @apply rounded-[26px] overflow-hidden;
+    .footer {
+        @apply py-[10px] pl-[30px] text-black;
+    }
+
+    .pc .footer {
+        @apply absolute bottom-0;
+    }
+
+    .main {
+        @apply bg-custom-blue pb-[20px] relative h-[100vh];
+    }
+
+    .pc .content {
+        max-width: 600px;
+        @apply mx-[auto];
     }
 
     .content {
-        @apply bg-custom-blue absolute w-full top-0 h-[100vh];
+        @apply w-full;
     }
 
-    .mobile .header {
+    .header {
         @apply border-none;
     }
 
-    .mobile .header h1 {
+    .header h1 {
         @apply text-white;
     }
 
-    .pc .header {
-        @apply border;
-    }
-
-    .pc .header h1 {
-        @apply text-black;
-    }
-
-    .pc .dateContainer {
-        @apply pt-[70px];
+    .nav {
+        @apply text-white;
     }
 
     .dateContainer {
