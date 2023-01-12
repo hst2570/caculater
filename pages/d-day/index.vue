@@ -29,8 +29,9 @@
                         <span class="caculatedDate">{{ absDate }}일</span> 지났습니다.
                     </span>
                 </div>
-                <div v-else>
+                <div v-else class="description">
                     <span class="placeholder">D-Day 날짜를 입력해주세요.</span>
+                    <span class="placeholder">D-Day는 오늘 기준으로 계산됩니다.</span>
                 </div>
                 <CommonShare :title="'D-Day 계산기'" :text="'D-Day 계산해보세요'" class="shareBtn" />
             </div>
@@ -220,5 +221,9 @@
 
     .placeholder {
         @apply text-grey-500;
+    }
+
+    .description {
+        @apply flex flex-col gap-[8px];
     }
 </style>

@@ -38,7 +38,7 @@
     }
 
     .navBox {
-        @apply bg-custom-blue h-full w-[280px] pt-[20px] px-[20px] flex flex-col gap-[12px] border-t border-grey-600;
+        @apply bg-custom-blue h-full w-[280px] pt-[20px] px-[20px] flex flex-col gap-[12px] border-t border-grey-600 border-r;
     }
 
     .navBox li {

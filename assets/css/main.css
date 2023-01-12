@@ -22,11 +22,8 @@
     }
 
     .footer {
-        @apply py-[10px] pl-[30px] text-black;
-    }
-
-    .pc .footer {
-        @apply absolute bottom-0;
+        color: #0b3861;
+        @apply py-[10px] pl-[30px] absolute bottom-0;
     }
 
     .main {
@@ -55,7 +52,7 @@
     }
 
     .dateContainer {
-        @apply pt-[120px] px-[35px];
+        @apply pt-[80px] px-[35px];
     }
 
     .shareBtn {
