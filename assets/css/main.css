@@ -14,7 +14,6 @@
 
     body {
         margin: 0;
-        @apply bg-custom-blue;
     }
 
     .hidden {
@@ -27,7 +26,8 @@
     }
 
     .main {
-        @apply bg-custom-blue pb-[20px] relative h-[100vh];
+        min-height: 100vh;
+        @apply bg-custom-blue pb-[20px] relative;
     }
 
     .pc .content {

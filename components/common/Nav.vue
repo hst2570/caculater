@@ -3,6 +3,7 @@
         <ul class="navBox">
             <li><CommonAnchor class="navItem" text="D-day 계산기" to="/d-day" /></li>
             <li><CommonAnchor class="navItem" text="날짜 계산기" to="/date" /></li>
+            <li><CommonAnchor class="navItem" text="롤 타임라인" to="/lol" /></li>
         </ul>
     </div>
 </template>

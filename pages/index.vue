@@ -1,5 +1,5 @@
 <script setup>
-const router = useRouter();
+    const router = useRouter();
 
-router.replace('/d-day');
+    router.replace('/lol');
 </script>
