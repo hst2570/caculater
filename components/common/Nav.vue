@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isOpen" class="navContainer" @scroll.stop.prevent>
+    <div v-if="isOpen" class="navContainer">
         <ul class="navBox">
             <li><CommonAnchor class="navItem" text="D-day 계산기" to="/d-day" /></li>
             <li><CommonAnchor class="navItem" text="날짜 계산기" to="/date" /></li>
@@ -16,9 +16,6 @@
     });
     const deviceHeight = ref();
     const isOpen = ref(false);
-    const clickNav = (e) => {
-        console.log(e);
-    };
 
     watchEffect(() => {
         if (props.open) {

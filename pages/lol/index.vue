@@ -20,10 +20,11 @@
 
             <div class="importantZone">
                 <span class="countDown">카운트다운</span>
-                <div v-for="(line, index) in timelineList" :key="index" class="line" :class="{ done: line.time + 1 <= currentTime }" :data-time="line.time">
-                    <span class="title"
-                        >{{ formatedTime(line.time) }} <span>- {{ line.title }}</span></span
-                    >
+                <div v-for="(line, index) in timelineList" :key="index" class="line" :class="{ done: line.time <= currentTime }" :data-time="line.time">
+                    <span class="title" :class="{ warn: line.level === 2, danger: line.level === 3 }"
+                        >{{ formatedTime(line.time) }} <span>- {{ line.title }}</span>
+                    </span>
+                    <span v-if="line.time - currentTime < 10" class="timelineCount">{{ Math.floor(line.time - currentTime) }}</span>
                     <span class="progress" :style="{ width: `${(1 - (line.time - currentTime) / 30) * 100}%` }"></span>
                 </div>
             </div>
@@ -230,7 +231,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        @apply bg-gray-400 opacity-50;
+        @apply bg-gray-400 opacity-30;
     }
 
     .title {
@@ -266,7 +267,7 @@
 
     .currentTime {
         background-color: rgba(40, 40, 40, 0.3);
-        @apply absolute top-[10px] left-[20px] text-red-400 text-[26px] font-pre font-[900] p-[12px] rounded-[12px];
+        @apply absolute top-[10px] left-[20px] text-red-500 text-[32px] font-pre font-[900] p-[12px] rounded-[12px];
     }
 
     .startBtn {
@@ -276,5 +277,17 @@
     .initContainer {
         max-width: 480px;
         @apply flex flex-row my-[30px] mx-[auto] gap-[8px] relative;
+    }
+
+    .warn span {
+        @apply text-yellow-600;
+    }
+
+    .danger span {
+        @apply text-red-500;
+    }
+
+    .timelineCount {
+        @apply inline-block absolute right-0 text-[14px] text-gray-600;
     }
 </style>
