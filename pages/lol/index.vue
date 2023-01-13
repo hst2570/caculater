@@ -256,7 +256,8 @@
     }
 
     .timeLineContainer {
-        @apply flex flex-row mt-[30px] gap-[8px];
+        max-width: 480px;
+        @apply flex flex-row mt-[30px] gap-[8px] mx-[auto];
     }
 
     .countDown {

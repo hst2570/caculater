@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isOpen" class="navContainer" :style="{ height: deviceHeight + 'px' }">
+    <div v-if="isOpen" class="navContainer" @scroll.stop.prevent>
         <ul class="navBox">
             <li><CommonAnchor class="navItem" text="D-day 계산기" to="/d-day" /></li>
             <li><CommonAnchor class="navItem" text="날짜 계산기" to="/date" /></li>
@@ -35,11 +35,11 @@
 <style scoped>
     .navContainer {
         background-color: rgba(0, 0, 0, 0.2);
-        @apply absolute top-[48px] left-0  h-[500px] w-full z-[2];
+        @apply absolute top-[48px] left-0  w-full h-full z-[10] overflow-hidden;
     }
 
     .navBox {
-        @apply bg-custom-blue h-full w-[280px] pt-[20px] px-[20px] flex flex-col gap-[12px] border-t border-grey-600 border-r;
+        @apply bg-white h-full w-[280px] pt-[20px] px-[20px] flex flex-col gap-[12px] border-t border-grey-600 border-r;
     }
 
     .navBox li {
@@ -49,7 +49,7 @@
         line-height: 26px;
         font-family: 'Pretendard';
 
-        @apply border-b p-[5px] text-white;
+        @apply border-b p-[5px] text-black;
     }
 
     .navItem {
