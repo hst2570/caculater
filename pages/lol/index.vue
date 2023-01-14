@@ -5,7 +5,8 @@
             <div class="initContainer">
                 <span class="countDown">시간 입력</span>
                 <CommonTimeInput @set-value="setTimeValue" />
-                <button class="startBtn" @click="startTimeline">Start!</button>
+                <button v-if="!isStarted" class="startBtn" @click="startTimeline">Start!</button>
+                <button v-else class="startBtn" @click="stopTimeline">Stop</button>
             </div>
 
             <div class="mapContainer">
@@ -72,8 +73,70 @@
     const audioElement = ref();
     const isStarted = ref(false);
     const autoplay = ref(false);
+    const minionCount = ref(0);
+    let minionTimeout = null;
+    let minionInterval = null;
 
     let currentTimeInterval = null;
+
+    const setMinion = () => {
+        if (minionTimeout || minionInterval) {
+            clearTimeout(minionTimeout);
+            minionTimeout = null;
+            clearInterval(minionInterval);
+            minionInterval = null;
+        }
+
+        let firstTimer = 65;
+        let elseTimer = 30;
+
+        if (currentTime.value >= 65) {
+            minionCount.value++;
+        } else {
+            firstTimer = firstTimer - currentTime.value;
+        }
+
+        if (currentTime.value >= 95) {
+            currentTime = 0;
+            minionCount.value = Number(minionCount.value) + Number(((currentTime.value - 65) / 30).toFixed(0));
+            elseTimer = elseTimer - ((currentTime.value - 65) % 30);
+        }
+
+        if (firstTimer > 0) {
+            minionTimeout = setTimeout(() => {
+                minionCount.value++;
+                canonTimer();
+            }, firstTimer * 1000);
+        } else if (elseTimer !== 30) {
+            minionTimeout = setTimeout(() => {
+                minionCount.value++;
+
+                if (minionCount.value % 3 == 0) {
+                    notice.value = '대포라인 생성';
+                    audioTrack.value.push('canon.mp3');
+                }
+
+                canonTimer();
+            }, elseTimer * 1000);
+        } else {
+            canonTimer();
+        }
+    };
+
+    const canonTimer = () => {
+        minionInterval = setInterval(() => {
+            minionCount.value++;
+            if (minionCount.value % 3 == 0) {
+                notice.value = '대포라인 생성';
+                audioTrack.value.push('canon.mp3');
+            }
+
+            if (currentTime.value > 900) {
+                clearInterval(minionInterval);
+                minionInterval = null;
+            }
+        }, 30 * 1000);
+    };
 
     const startTimeline = () => {
         clearInterval(currentTimeInterval);
@@ -94,10 +157,22 @@
         isStarted.value = true;
         autoplay.value = true;
         playAudio();
+        setMinion();
 
         setTimeout(() => {
             notice.value = '';
         }, 3000);
+    };
+
+    const stopTimeline = () => {
+        clearTimeout(minionTimeout);
+        minionTimeout = null;
+        clearInterval(minionInterval);
+        minionInterval = null;
+        clearInterval(currentTimeInterval);
+        currentTimeInterval = null;
+        currentTime.value = 0;
+        isStarted.value = false;
     };
 
     const formatedTime = (time) => {

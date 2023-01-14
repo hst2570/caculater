@@ -5,13 +5,10 @@ export const warningLevel = {
 };
 
 export const timeline = {
-    35: {
+    65: {
         title: '미니언 생성',
-        repeat: {
-            interval: 30
-        },
         level: warningLevel.INFO,
-        time: 35,
+        time: 65,
         audio: 'create_minion.mp3'
     },
     210: {
