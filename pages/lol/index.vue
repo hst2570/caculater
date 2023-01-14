@@ -16,6 +16,7 @@
                         <span>{{ notice }}</span>
                     </div>
                 </div>
+                <audio :src="audioSrc" :autoplay="autoplay" ref="audioElement" @play="playAudio" @ended="endedAudio"></audio>
             </div>
 
             <div class="importantZone">
@@ -43,7 +44,7 @@
                     <p>타임 라인</p>
                     <div v-for="(line, index) in list" :key="index" class="line" :class="{ done: settedTimelineKeys[line.time] || line.time < currentTime }" :data-time="line.time">
                         <span class="title"
-                            >{{ formatedTime(line.time) }} <span> - {{ line.title }}</span></span
+                            >{{ formatedTime(line.time) }} <span> {{ line.title }}</span></span
                         >
                     </div>
                 </div>
@@ -56,6 +57,8 @@
     import { isMobile } from '../../store/useragent';
     import { timeline, warningLevel } from '../../store/static/lol_timeline';
 
+    const AFTER_30 = '30s_after';
+
     const isPc = ref();
     const isHidden = ref(true);
     const timelineList = ref([]);
@@ -64,6 +67,12 @@
     const currentTime = ref(0);
     const notice = ref();
     const time = ref(0);
+    const audioSrc = ref('_nuxt/assets/audio/timeline.mp3');
+    const audioTrack = ref([]);
+    const audioElement = ref();
+    const isStarted = ref(false);
+    const autoplay = ref(false);
+
     let currentTimeInterval = null;
 
     const startTimeline = () => {
@@ -82,6 +91,9 @@
         }
 
         notice.value = '타임라인 시작';
+        isStarted.value = true;
+        autoplay.value = true;
+        playAudio();
 
         setTimeout(() => {
             notice.value = '';
@@ -97,6 +109,33 @@
 
     const setTimeValue = (inputTime) => {
         time.value = inputTime;
+    };
+
+    const playAudio = () => {
+        if (isStarted.value) {
+            audioElement.value?.play();
+        }
+    };
+
+    const endedAudio = () => {
+        setTrack();
+    };
+
+    const setTrack = () => {
+        if (!audioElement.value?.ended) {
+            return;
+        }
+
+        let next = audioTrack.value.shift();
+
+        if (next === AFTER_30) {
+            next = '30s_after.mp3';
+        }
+
+        if (next) {
+            audioSrc.value = `_nuxt/assets/audio/${next}`;
+            audioElement.value?.load();
+        }
     };
 
     onMounted(() => {
@@ -118,14 +157,19 @@
         if (timeline[afterLineTime]) {
             timelineList.value.push(timeline[afterLineTime]);
             settedTimelineKeys.value[afterLineTime] = true;
+            audioTrack.value.push(AFTER_30);
+            audioTrack.value.push(timeline[afterLineTime].audio);
         }
 
         if (timeline[currentTime.value]) {
             notice.value = timeline[currentTime.value]?.title;
+            audioTrack.value.push(timeline[currentTime.value].audio);
             setTimeout(() => {
                 notice.value = '';
             }, 3000);
         }
+
+        setTrack();
     });
 
     useHead({
@@ -194,6 +238,7 @@
     }
 
     .line span {
+        white-space: nowrap;
         @apply text-center inline-block;
     }
 

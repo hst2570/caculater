@@ -11,57 +11,62 @@ export const timeline = {
             interval: 30
         },
         level: warningLevel.INFO,
-        time: 35
+        time: 35,
+        audio: 'create_minion.mp3'
     },
     210: {
         title: '첫 바위게 생성',
         level: warningLevel.INFO,
-        time: 210
-    },
-    450: {
-        title: '30초 후 전령 생성',
-        level: warningLevel.WARN,
-        time: 450
+        time: 210,
+        audio: 'crab.mp3'
     },
     480: {
         title: '첫 전령 생성',
         level: warningLevel.INFO,
-        time: 480
+        time: 480,
+        audio: 'jun_8.mp3'
     },
     300: {
         title: '첫 용 생성',
         level: warningLevel.INFO,
-        time: 300
+        time: 300,
+        audio: 'dragon.mp3'
     },
     1200: {
         title: '바론 남작 생성',
         level: warningLevel.INFO,
-        time: 1200
+        time: 1200,
+        audio: 'ba_20.mp3'
     },
     90: {
         title: '버프 몬스터 생성',
         level: warningLevel.INFO,
-        time: 90
+        time: 90,
+        audio: 'buf_gen.mp3'
     },
     160: {
         title: '정글 3캠! 갱킹 조심',
         level: warningLevel.DANGER,
-        time: 160
+        time: 160,
+        audio: 'jungle_3.mp3'
     },
     195: {
         title: '정글 풀캠! 갱킹 조심',
         level: warningLevel.DANGER,
-        time: 195
+        time: 195,
+        audio: 'jungle_full.mp3'
     },
     115: {
         title: '정글 2렙 갱킹 조심',
         level: warningLevel.WARN,
-        time: 115
+        time: 115,
+        audio: 'jungle_2.mp3'
     },
     330: {
         title: '곧 미드 6렙 타이밍',
         level: warningLevel.DANGER,
-        time: 330
+        time: 330,
+        audio: 'mid6.mp3'
     },
     930: {
         title: '곧 미드 11렙 타이밍',
@@ -71,6 +76,7 @@ export const timeline = {
     840: {
         title: '1코어 타이밍',
         level: warningLevel.INFO,
-        time: 840
+        time: 840,
+        audio: '1core.mp3'
     }
 };
