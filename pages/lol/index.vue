@@ -68,7 +68,7 @@
     const currentTime = ref(0);
     const notice = ref();
     const time = ref(0);
-    const audioSrc = ref('../_nuxt/assets/audio/timeline.mp3');
+    const audioSrc = ref('../audio/timeline.mp3');
     const audioTrack = ref([]);
     const audioElement = ref();
     const isStarted = ref(false);
@@ -208,7 +208,7 @@
         }
 
         if (next) {
-            audioSrc.value = `../_nuxt/assets/audio/${next}`;
+            audioSrc.value = `../audio/${next}`;
             audioElement.value?.load();
         }
     };
