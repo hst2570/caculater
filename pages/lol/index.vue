@@ -3,7 +3,7 @@
         <CommonHeader :title="'롤 타임라인'" />
         <div class="content">
             <div class="initContainer">
-                <span class="countDown">시간 입력</span>
+                <span class="countDown">시간 입력 (기본 00:00)</span>
                 <CommonTimeInput @set-value="setTimeValue" />
                 <button v-if="!isStarted" class="startBtn" @click="startTimeline">Start!</button>
                 <button v-else class="startBtn" @click="stopTimeline">Stop</button>
@@ -276,21 +276,20 @@
 
     .mapContainer {
         max-width: 480px;
-        @apply my-[20px] relative mx-[auto];
+        @apply my-[20px] relative mx-[auto] p-[5px];
     }
 
     .map {
-        @apply mx-[auto] border rounded-[12px] overflow-hidden;
+        @apply mx-[auto] border-gray-700 rounded-[12px] overflow-hidden;
     }
 
     .importantZone {
         max-width: 480px;
         min-height: 75px;
-        @apply text-black mx-[auto] bg-white border rounded-[12px] p-[8px] relative mt-[50px];
+        @apply text-black mx-[auto] bg-gray-500 border-[3px] border-gray-700 rounded-[12px] p-[8px] relative mt-[50px];
     }
 
     .timeLine {
-        max-width: 300px;
         @apply text-black text-[12px] flex flex-col flex-grow p-[5px];
     }
 
@@ -313,7 +312,6 @@
     }
 
     .line span {
-        white-space: nowrap;
         @apply text-center inline-block;
     }
 
@@ -355,6 +353,8 @@
     }
 
     .title {
+        white-space: nowrap;
+        overflow: hidden;
         @apply z-[2] relative;
     }
 
@@ -372,7 +372,6 @@
     }
 
     .description {
-        max-width: 300px;
         @apply text-black text-[12px] flex flex-col flex-grow p-[5px];
     }
 
@@ -381,8 +380,14 @@
         @apply flex flex-row mt-[30px] gap-[8px] mx-[auto];
     }
 
+    @media (max-width: 500px) {
+        .timeLineContainer {
+            @apply flex-col;
+        }
+    }
+
     .countDown {
-        @apply text-white absolute top-[-30px];
+        @apply text-white absolute top-[-30px] left-[4px];
     }
 
     .currentTime {
@@ -396,7 +401,7 @@
 
     .initContainer {
         max-width: 480px;
-        @apply flex flex-row my-[30px] mx-[auto] gap-[8px] relative;
+        @apply flex flex-row my-[30px] mx-[auto] gap-[8px] relative p-[5px];
     }
 
     .warn span {
@@ -408,6 +413,6 @@
     }
 
     .timelineCount {
-        @apply inline-block absolute right-0 text-[14px] text-gray-600;
+        @apply inline-block absolute right-[14px] top-[11px] text-[14px] text-gray-500;
     }
 </style>

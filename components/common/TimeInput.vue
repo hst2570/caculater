@@ -1,8 +1,8 @@
 <template>
     <div class="textField" :class="{ onError: isOnError }">
-        <input @input="checkMaxLength" :inputmode="inputmode" v-model="minute" :type="type" maxlength="4" placeholder="01" />
+        <input @input="checkMaxLength" :inputmode="inputmode" v-model="minute" :type="type" maxlength="2" placeholder="00" />
         <div>:</div>
-        <input @input="checkMaxLength" ref="secondText" :inputmode="inputmode" v-model="second" :type="type" maxlength="2" placeholder="30" />
+        <input @input="checkMaxLength" ref="secondText" :inputmode="inputmode" v-model="second" :type="type" maxlength="2" placeholder="00" />
         <div v-if="isOnError" class="errorMsg">시간 형식이 잘못되었습니다.</div>
     </div>
 </template>
