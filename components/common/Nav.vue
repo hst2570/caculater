@@ -1,9 +1,9 @@
 <template>
     <div v-if="isOpen" class="navContainer">
         <ul class="navBox">
+            <li><CommonAnchor class="navItem" text="롤 타임라인" to="/lol" /></li>
             <li><CommonAnchor class="navItem" text="D-day 계산기" to="/d-day" /></li>
             <li><CommonAnchor class="navItem" text="날짜 계산기" to="/date" /></li>
-            <li><CommonAnchor class="navItem" text="롤 타임라인" to="/lol" /></li>
         </ul>
     </div>
 </template>
@@ -32,7 +32,8 @@
 <style scoped>
     .navContainer {
         background-color: rgba(0, 0, 0, 0.2);
-        @apply absolute top-[48px] left-0  w-full h-full z-[10] overflow-hidden;
+        height: calc(100% - 48px);
+        @apply absolute top-[48px] left-0  w-full z-[10] overflow-hidden;
     }
 
     .navBox {
