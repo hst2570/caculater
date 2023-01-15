@@ -4,9 +4,9 @@
         <div class="content">
             <div class="initContainer">
                 <span class="countDown">시간 입력 (기본 00:00)</span>
-                <CommonTimeInput @set-value="setTimeValue" />
-                <button v-if="!isStarted" class="startBtn" @click="startTimeline">Start!</button>
-                <button v-else class="startBtn" @click="stopTimeline">Stop</button>
+                <CommonTimeInput v-if="!isStarted" @set-value="setTimeValue" />
+                <button v-if="!isStarted" class="startBtn" @click="startTimeline">Start</button>
+                <button v-else class="pausetBtn" @click="stopTimeline">Stop!</button>
             </div>
 
             <div class="mapContainer">
@@ -308,11 +308,11 @@
     }
 
     .line {
-        @apply bg-white border rounded-[12px] p-[8px] font-pre text-[18px] font-[700] m-[5px] relative overflow-hidden;
+        @apply bg-white border rounded-[12px] p-[8px] font-pre text-[18px] font-[700] m-[5px] relative overflow-hidden h-full;
     }
 
     .line span {
-        @apply text-center inline-block;
+        @apply text-center;
     }
 
     @keyframes fadeInUp {
@@ -399,9 +399,13 @@
         @apply text-[16px] p-[12px] mx-[auto] bg-white rounded-[8px] block w-[120px];
     }
 
+    .pausetBtn {
+        @apply text-[16px] p-[12px] mx-[auto] bg-white rounded-[8px] block w-full;
+    }
+
     .initContainer {
         max-width: 480px;
-        @apply flex flex-row my-[30px] mx-[auto] gap-[8px] relative p-[5px];
+        @apply flex flex-row my-[30px] mx-[auto] gap-[18px] relative p-[5px];
     }
 
     .warn span {

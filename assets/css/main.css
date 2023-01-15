@@ -21,8 +21,7 @@
     }
 
     .footer {
-        color: #0b3861;
-        @apply py-[10px] pl-[30px] absolute bottom-0;
+        @apply py-[10px] pl-[30px] text-white w-full;
     }
 
     .main {

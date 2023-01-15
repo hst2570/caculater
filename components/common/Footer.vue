@@ -1,3 +1,5 @@
 <template>
-    <div class="footer"><span>Copyright 2023 - eden</span></div>
+    <div class="footer">
+        <div>Copyright 2023 - eden</div>
+    </div>
 </template>
